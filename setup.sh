@@ -67,7 +67,7 @@ function install_debian(){
             $SUDO apt-get -y install python3
         fi
 
-        $SUDO apt -y install chromium-browser # Update Chromium Browser or script won't work.
+        $SUDO apt -y install chromium # Update Chromium Browser or script won't work.
         $SUDO apt -y install $PYTHON-pip
 }
 
