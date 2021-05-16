@@ -24,6 +24,8 @@ import re
 import base64
 import subprocess
 
+VERSION = 210516
+
 class Logger:
     def __init__(self, level):
         self.level = 0 if level is None else level
@@ -184,6 +186,8 @@ def main(argv=None):
 def get_args_values(argv):
     if argv is None:
         argv = sys.argv
+        
+    print(f"noip-renew - Version: {VERSION}")
     if len(argv) < 3:
         print(f"Usage: {argv[0]} <noip_username> <noip_password> [<debug-level>] ")
         sys.exit(1)
