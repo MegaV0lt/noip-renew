@@ -20,7 +20,8 @@ function config() {
     LOGDIR=/var/log/noip-renew/$USER
     INSTDIR=/usr/local/bin
     INSTEXE=$INSTDIR/noip-renew-$USER.sh
-    CRONJOB="0 1    * * *   $USER    $INSTEXE $LOGDIR"
+    #CRONJOB="0 1    * * *   $USER    $INSTEXE $LOGDIR"
+    CRONJOB="0 1  * * *  $INSTEXE $LOGDIR"  #Debian
 }
 
 function install() {
@@ -54,9 +55,9 @@ function install_debian(){
             $SUDO apt-get update
         fi
 
-        $SUDO apt -y install chromium-chromedriver || \
-        $SUDO apt -y install chromium-driver || \
-        $SUDO apt -y install chromedriver
+        $SUDO apt -y install chromium-chromedriver \
+          || $SUDO apt -y install chromium-driver \
+          || $SUDO apt -y install chromedriver
 
         $SUDO apt -y install cron 
 
@@ -66,8 +67,10 @@ function install_debian(){
             echo "This script requires Python version 3.6 or higher. Attempting to install..."
             $SUDO apt-get -y install python3
         fi
-
-        $SUDO apt -y install chromium # Update Chromium Browser or script won't work.
+ 
+        # Update Chromium Browser or script won't work. In debian chromium instead chromium-browser is needed.
+        $SUDO apt -y install chromium-browser \
+          || $SUDO apt -y install chromium
         $SUDO apt -y install $PYTHON-pip
 }
 
