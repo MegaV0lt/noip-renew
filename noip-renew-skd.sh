@@ -1,9 +1,9 @@
 #!/bin/bash
 USER=
 SUDO=sudo
-LOGDIR=/var/log/noip-renew/$USER
-INSTDIR=/usr/local/bin
-INSTEXE=$INSTDIR/noip-renew-$USER
+LOGDIR="/var/log/noip-renew/${USER}"
+INSTDIR='/usr/local/bin'
+INSTEXE="${INSTDIR}/noip-renew-${USER}.sh"
 CRONJOB="30 0 * * *   $USER    $INSTEXE $LOGDIR"
 NEWCJOB="30 0 $1 $2 *   $USER    $INSTEXE $LOGDIR"
 $SUDO crontab -u $USER -l | grep -v '/noip-renew*'  | $SUDO crontab -u $USER -
