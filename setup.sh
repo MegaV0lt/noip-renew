@@ -27,8 +27,8 @@ f_install() {
   OS="$(hostnamectl | grep -i 'operating system')"
   echo "Operating System: $OS"
   case "$OS" in
-    *Arch?Linux*) install_arch ;;
-    *)            install_debian ;;
+    *Arch?Linux*) f_install_arch ;;
+    *)            f_install_debian ;;
   esac
   # Debian9 package 'python-selenium' does not work with chromedriver,
   # Install from pip, which is newer
@@ -84,9 +84,9 @@ f_deploy() {
   $SUDO chown "$USER" "${INSTDIR}/noip-renew-skd.sh"
   $SUDO chmod 700 "$INSTEXE"
   f_noip
-  $SUDO crontab -u "$USER" -l | grep -v '/noip-renew*' | $SUDO crontab -u "$USER" -
+  $SUDO crontab -u "$USER" -l | grep -v '/noip-renew' | $SUDO crontab -u "$USER" -
   ($SUDO crontab -u "$USER" -l; echo "$CRONJOB") | $SUDO crontab -u "$USER" -
-  $SUDO sed -i 's/USER=/USER='$USER'/1' "${INSTDIR}/noip-renew-skd.sh"
+  $SUDO sed -i 's/USER=/USER='"$USER"'/1' "${INSTDIR}/noip-renew-skd.sh"
   echo 'Installation Complete.'
   echo 'To change noip.com account details, please run setup.sh again.'
   echo "Logs can be found in '$LOGDIR'"
@@ -100,8 +100,8 @@ f_noip() {
   passvar="$(echo -n "$passvar" | base64)"
   echo
 
-  $SUDO sed -i 's/USERNAME=".*"/USERNAME="'$uservar'"/1' "$INSTEXE"
-  $SUDO sed -i 's/PASSWORD=".*"/PASSWORD="'$passvar'"/1' "$INSTEXE"
+  $SUDO sed -i 's/USERNAME=".*"/USERNAME="'"$uservar"'"/1' "$INSTEXE"
+  $SUDO sed -i 's/PASSWORD=".*"/PASSWORD="'"$passvar"'"/1' "$INSTEXE"
 }
 
 f_installer() {
