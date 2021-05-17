@@ -24,7 +24,7 @@ import re
 import base64
 import subprocess
 
-VERSION = 210516
+VERSION = 210517
 
 class Logger:
     def __init__(self, level):
