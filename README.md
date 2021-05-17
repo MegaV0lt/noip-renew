@@ -16,7 +16,7 @@ using Python/Selenium with Chrome headless mode.
 
 ## Usage
 
-1. Clone this repository to the device you will be running it from. (`git clone https://github.com/loblab/noip-renew.git`)
+1. Clone this repository to the device you will be running it from. (`git clone https://github.com/MegaV0lt/noip-renew.git`)
 2. Run setup.sh and set your noip.com account information,
 3. Run noip-renew-USERNAME command.
 
