@@ -186,8 +186,6 @@ def main(argv=None):
 def get_args_values(argv):
     if argv is None:
         argv = sys.argv
-        
-    print(f"noip-renew - Version: {VERSION}")
     if len(argv) < 3:
         print(f"Usage: {argv[0]} <noip_username> <noip_password> [<debug-level>] ")
         sys.exit(1)
@@ -197,6 +195,8 @@ def get_args_values(argv):
     debug = 1
     if len(argv) > 3:
         debug = int(argv[3])
+    if debug > 1:
+        print(f"noip-renew - Version: {VERSION}")
     return noip_username, noip_password, debug
 
 
