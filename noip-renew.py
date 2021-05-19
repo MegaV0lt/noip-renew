@@ -24,7 +24,7 @@ import re
 import base64
 import subprocess
 
-VERSION = 210517
+VERSION = 210519ß
 
 class Logger:
     def __init__(self, level):
@@ -99,6 +99,8 @@ class Robot:
             self.logger.log(f"{host_name} expires in {str(expiration_days)} days")
             if expiration_days < 7:
                 self.update_host(host_button, host_name)
+                if count > 0:
+                    self.open_hosts_page()
                 count += 1
             iteration += 1
         self.browser.save_screenshot("results.png")
